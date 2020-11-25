@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Post from "./Post";
+// import Post from "./Post";
 import firebase from "firebase";
 
 class AddProduct extends Component{
@@ -11,70 +11,70 @@ class AddProduct extends Component{
         }
     } 
     
-    ambilDataDariServerAPI = () => { 
-        let ref = firebase.database().ref("/");
-        ref.on("value", snapshot => {
-            const state = snapshot.val();
-            this.setState(state);
-        });
-    }
+    // ambilDataDariServerAPI = () => { 
+    //     let ref = firebase.database().ref("/");
+    //     ref.on("value", snapshot => {
+    //         const state = snapshot.val();
+    //         this.setState(state);
+    //     });
+    // }
 
-    simpanDataKeServerAPI = () => {
-        firebase.database()
-            .ref("/")
-            .set(this.state);
-    }
+    // simpanDataKeServerAPI = () => {
+    //     firebase.database()
+    //         .ref("/")
+    //         .set(this.state);
+    // }
 
-    componentDidMount() { // komponen untuk mengecek ketika compnent telah di-mount-ing, maka panggil API 
-        this.ambilDataDariServerAPI() // ambil data dari server API lokal 
-    }
+    // componentDidMount() { // komponen untuk mengecek ketika compnent telah di-mount-ing, maka panggil API 
+    //     this.ambilDataDariServerAPI() // ambil data dari server API lokal 
+    // }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState !== this.state) {
-            this.simpanDataKeServerAPI();
-        }
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if (prevState !== this.state) {
+    //         this.simpanDataKeServerAPI();
+    //     }
+    // }
 
-    handleHapusProduk = (id) => { // fungsi yang meng-handle button action hapus data 
-        const { listProduk } = this.state;
-        const newState = listProduk.filter(data => {
-            return data.id !== id;
-        })
-        this.setState({ listProduk: newState })
-    }
+    // handleHapusProduk = (id) => { // fungsi yang meng-handle button action hapus data 
+    //     const { listProduk } = this.state;
+    //     const newState = listProduk.filter(data => {
+    //         return data.id !== id;
+    //     })
+    //     this.setState({ listProduk: newState })
+    // }
 
-    handleTombolSimpan = (event) => { // fungsi untuk meng-handle tombol simpan 
-        let nama = this.refs.namaProduk.value;
-        let img = this.refs.imgProduk.value;
-        let harga = this.refs.hargaProduk.value;
-        let stok = this.refs.stokProduk.value;
-        let id = this.refs.id.value;
+    // handleTombolSimpan = (event) => { // fungsi untuk meng-handle tombol simpan 
+    //     let nama = this.refs.namaProduk.value;
+    //     let img = this.refs.imgProduk.value;
+    //     let harga = this.refs.hargaProduk.value;
+    //     let stok = this.refs.stokProduk.value;
+    //     let id = this.refs.id.value;
         
-        if (id && nama && img && harga && stok) {
-            const { listProduk } = this.state;
-            const indeksProduk = listProduk.findIndex(data => {
-                return data.id === id;
-            });
+    //     if (id && nama && img && harga && stok) {
+    //         const { listProduk } = this.state;
+    //         const indeksProduk = listProduk.findIndex(data => {
+    //             return data.id === id;
+    //         });
 
-            listProduk[indeksProduk].nama = nama;
-            listProduk[indeksProduk].img = img;
-            listProduk[indeksProduk].harga = harga;
-            listProduk[indeksProduk].stok = stok;
-            this.setState({ listProduk });
-        }
-        else if (nama && img && harga && stok)
-        {
-            const id = new Date().getTime().toString();
-            const { listProduk } = this.state;
-            listProduk.push({ id, nama, img, harga, stok });
-            this.setState({ listProduk });
-        }
-        this.refs.namaProduk.value = "";
-        this.refs.imgProduk.value = "";
-        this.refs.hargaProduk.value = "";
-        this.refs.stokProduk.value = "";
-        this.refs.id.value = "";
-    }
+    //         listProduk[indeksProduk].nama = nama;
+    //         listProduk[indeksProduk].img = img;
+    //         listProduk[indeksProduk].harga = harga;
+    //         listProduk[indeksProduk].stok = stok;
+    //         this.setState({ listProduk });
+    //     }
+    //     else if (nama && img && harga && stok)
+    //     {
+    //         const id = new Date().getTime().toString();
+    //         const { listProduk } = this.state;
+    //         listProduk.push({ id, nama, img, harga, stok });
+    //         this.setState({ listProduk });
+    //     }
+    //     this.refs.namaProduk.value = "";
+    //     this.refs.imgProduk.value = "";
+    //     this.refs.hargaProduk.value = "";
+    //     this.refs.stokProduk.value = "";
+    //     this.refs.id.value = "";
+    // }
 
     render() {
         return (
